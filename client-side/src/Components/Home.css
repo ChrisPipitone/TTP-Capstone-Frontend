@@ -1,0 +1,18 @@
+.jumbotron{
+    background-image: url('https://dylzm7u8zqclv.cloudfront.net/2019/03/25/02/20/39/d8aafbab-3778-4bc5-b2cc-9b33fa9e2a4d/ham-cucumber-recipe.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.card{
+    max-width:256px;
+}
+
+img{
+    max-width:256px;
+    max-height: 256px;
+}
+
+.d-flex{
+    justify-content: space-between;
+}
