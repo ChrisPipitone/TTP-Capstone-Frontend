@@ -30,7 +30,7 @@ function Register() {
 
     return (
 
-        <div className="form">
+        <div className="form body-text">
             <form onSubmit={handleSubmit}>
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark ">
@@ -40,7 +40,7 @@ function Register() {
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <Link class="btn btn-primary btn-lg" to="/" role="button">Home</Link>
+                                    <Link className="btn btn-primary btn-lg" to="/" role="button">Home</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className="btn btn-primary btn-lg" to="/Login" role="button">Login</Link>
@@ -52,17 +52,17 @@ function Register() {
                     <img className="form-img" src="https://dcassetcdn.com/design_img/2808265/132070/132070_15359255_2808265_834eb78a_image.jpg" alt="Burger HQ Logo" />
 
                     <label htmlFor="email">  </label>
-                    <input type="text" placeHolder="Email" name="email" onChange={handleEmail} />
+                    <input type="text" placeholder="Email" name="email" onChange={handleEmail} />
                 </div>
                 <div>
                     <label htmlFor="text">  </label>
-                    <input type="text" placeHolder="Username" name="username" onChange={handleUsername} />
+                    <input type="text" placeholder="Username" name="username" onChange={handleUsername} />
                 </div>
                 <div>
                     <label htmlFor="password"></label>
-                    <input type="text" placeHolder="Password" name="password" onChange={handlePassword} />
+                    <input type="text" placeholder="Password" name="password" onChange={handlePassword} />
                 </div>
-                <button>Sign Up</button>
+                <button className="btn-primary">Sign Up</button>
             </form>
         </div>
     )

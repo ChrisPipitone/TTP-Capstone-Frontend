@@ -1,10 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&family=Mochiy+Pop+P+One&display=swap');
+
 .jumbotron {
-    background-image: url('https://dylzm7u8zqclv.cloudfront.net/2019/03/25/02/20/39/d8aafbab-3778-4bc5-b2cc-9b33fa9e2a4d/ham-cucumber-recipe.jpg');
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://dylzm7u8zqclv.cloudfront.net/2019/03/25/02/20/39/d8aafbab-3778-4bc5-b2cc-9b33fa9e2a4d/ham-cucumber-recipe.jpg');
     background-size: cover; 
     background-repeat: no-repeat;
+    font-family: 'Sigmar One', cursive;
+    color: rgb(196, 171, 148);
+}
+
+.btn-primary{
+    background-color: #ad9836;
+    border-style: none;
+}
+
+.body-text{
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.list-group-item{
+    background-color:#c4a41f
 }
 
 .card {
+    background-color:#c4a41f;
     max-width:256px;
 }
 
@@ -17,16 +35,9 @@
     justify-content: space-between;
 }
 
-label::before {
-    background-image: url("./Images/bread.png");
-}
-
-:checked + label::before {
-    background-image: url("./Images/bread.png");
-}
-
-.form {
-    background-color: rgb(118, 129, 131);
+.menu-img{
+    max-width: 56px;
+    max-height: 56px;
 }
 
 div {
@@ -46,7 +57,6 @@ div {
         margin-top: 30px;
         margin-bottom: 10px;
     }
-
     
 button {
         display: inline-block;
