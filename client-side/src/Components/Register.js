@@ -1,5 +1,6 @@
 import './Style.css'
 import React, { useState } from 'react';
+import axios from 'axios'
 import { Navigate, Link } from 'react-router-dom';
 
 function Register() {
@@ -9,7 +10,7 @@ function Register() {
     const [redirect, setRedirect] = useState(false)
 
     const handleEmail = (event) => {
-        setUsername(event.target.value)
+        setEmail(event.target.value)
     }
 
     const handleUsername = (event) => {
@@ -20,13 +21,23 @@ function Register() {
         setPassword(event.target.value)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        setRedirect(true)
+        try {
+            const body = { email, username, password }
+            const response = axios({
+                method: 'post',
+                url: `http://localhost:5000/register`,
+                data: body
+            })
+            setRedirect(true)
+        } catch (err) {
+            console.error(err.message);
+        }
     }
 
     if (redirect)
-        return (<Navigate to="/UserHome" />)
+        return (<Navigate to="/Login" />)
 
     return (
 

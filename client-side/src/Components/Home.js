@@ -1,8 +1,21 @@
 import './Style.css'
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 function Home() {
+    const [sandwiches, setSandwich] = useState([]);
+
+    try {
+        axios
+            .get(``)
+            .then(response => {
+                setSandwich(sandwiches = response.data)
+            })
+    } catch (err) {
+        console.error(err.message)
+    }
+
     return (
         <div className="container">
             <div className="jumbotron">
@@ -16,21 +29,25 @@ function Home() {
 
             </div>
             <h3 className="body-text">Check out our popular creations below!</h3>
-            <div className="d-flex flex-row bd-highlight mb-3" className="body-text">
-                <div className="card">
-                    <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
-                        className="card-img-top card-img" alt="Sandwich" />
-                    <div className="card-body">
-                        <h5 className="card-title">Sandwich Name Here</h5>
-                    </div>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Ingredient 1</li>
-                        <li className="list-group-item">Ingredient 2</li>
-                        <li className="list-group-item">Ingredient 3</li>
-                    </ul>
-                </div>
 
-            </div>
+            {sandwiches.map(sandwich => (
+
+
+                <div className="d-flex flex-row bd-highlight mb-3" className="body-text">
+                    <div className="card" key={sandwich.sandwich_id}>
+                        <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
+                            className="card-img-top card-img" alt="Sandwich" />
+                        <div className="card-body">
+                            <h5 className="card-title">{sandwich.sandwich_name}</h5>
+                        </div>
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">Ingredient 1</li>
+                            <li className="list-group-item">Ingredient 2</li>
+                            <li className="list-group-item">Ingredient 3</li>
+                        </ul>
+                    </div>
+                </div>
+            ))}
         </div>
     )
 }
