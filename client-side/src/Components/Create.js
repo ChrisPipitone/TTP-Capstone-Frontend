@@ -1,6 +1,5 @@
 import "./Style.css"
 import axios from 'axios'
-import bread from "./Images/bread.png"
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -86,7 +85,7 @@ function Create() {
             {breads.map(bread => (
                 <div className="form-check form-check-inline" key={bread.ing_id}>
                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
-                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {bread.ing_name} <img className="menu-img" src={bread.image_path} /></label>
+                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {bread.ing_name}</label>
                 </div>
             ))}
 
@@ -94,7 +93,7 @@ function Create() {
             {meats.map(meat => (
                 <div className="form-check form-check-inline" key={meat.ing_id}>
                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
-                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {meat.ing_name} <img className="menu-img" src={meat.image_path} /></label>
+                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {meat.ing_name}</label>
                 </div>
             ))}
 
@@ -102,7 +101,7 @@ function Create() {
             {cheeses.map(cheese => (
                 <div className="form-check form-check-inline" key={cheese.ing_id}>
                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
-                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {cheese.ing_name} <img className="menu-img" src={cheese.image_path} /></label>
+                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {cheese.ing_name} </label>
                 </div>
             ))}
 
@@ -110,7 +109,7 @@ function Create() {
             {veggies.map(veggie => (
                 <div className="form-check form-check-inline" key={veggie.ing_id}>
                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
-                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {veggie.ing_name} <img className="menu-img" src={veggie.image_path} /></label>
+                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {veggie.ing_name} </label>
                 </div>
             ))}
 
@@ -118,7 +117,7 @@ function Create() {
             {sauces.map(sauce => (
                 <div className="form-check form-check-inline" key={sauce.ing_id}>
                     <input className="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
-                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {sauce.ing_name} <img className="menu-img" src={sauce.image_path} /></label>
+                    <label className="form-check-label" htmlFor="inlineCheckbox1"> {sauce.ing_name} </label>
                 </div>
             ))}
 
