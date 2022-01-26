@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function Home() {
     const [sandwiches, setSandwich] = useState([]);
     const [usedIngredients, setUsedIngredients] = useState([]);
-
+    const ingredients = [];
     React.useEffect(() => {
         try {
             axios
@@ -23,22 +23,25 @@ function Home() {
     console.log(sandwiches.length)
 
     const fetchIngredients = async () => {
-        for (let i = 0; i < sandwiches.length; i++) {
+        sandwiches.forEach( async (element) => {
             try {
+               console.log("sandwich id ::: " + element.sandwich_id)
                 axios
-                    .get(`http://localhost:5000/sandwiches/sandwich/${i}`)
+                    .get(`http://localhost:5000/sandwiches/sandwich/${element.sandwich_id}`)
                     .then(response => {
                         setUsedIngredients(response.data)
+                        console.log(response.data)
+                        ingredients.push(response.data);      
                     })
-
             } catch (err) {
                 console.error(err.message)
             }
-        }
+        })
     }
 
-    console.log(sandwiches);
-    console.log(usedIngredients);
+    //console.log(sandwiches);
+    //console.log(usedIngredients);
+    console.log(ingredients);
 
     return (
         <div className="container">
@@ -57,10 +60,9 @@ function Home() {
 
             <div className="d-flex flex-row bd-highlight mb-3" className="body-text">
                 {sandwiches.map(sandwich => (
-                    <div className="card" >
+                    <div className="card" key={sandwich.sandwich_id}>
                         <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
                             className="card-img-top card-img" alt="Sandwich" />
-
 
                         <div>
                             <div className="card-body" key={sandwich.sandwich_id}>
