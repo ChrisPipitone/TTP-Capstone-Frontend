@@ -29,7 +29,7 @@ function NameSandwich() {
     }
     console.log("saf sadf::: " + id);
     if (redirect)
-        return (<Navigate to="/AddIngredients" sId = {id}/>)
+        return (<Navigate to="/AddIngredients"  sId = {id}/>)
 
     return (
         <form className="body-text" onSubmit={handleSubmit}>

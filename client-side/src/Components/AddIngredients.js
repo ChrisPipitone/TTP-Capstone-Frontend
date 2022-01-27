@@ -10,7 +10,7 @@ function AddIngredients( {sId} ) {
     const [veggies, setVeggies] = useState([]);
     const [sauces, setSauces] = useState([]);
     let ingredientList = [];
-
+    console.log("ID1111::::" + sId);
     React.useEffect(() => {
         try {
             axios
