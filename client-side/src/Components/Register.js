@@ -27,10 +27,9 @@ function Register() {
             const body = { email, username, password }
             const response = axios({
                 method: 'post',
-                url: `http://localhost:5000/register`,
+                url: `http://localhost:5000/auth/register`,
                 data: body
-            })
-            setRedirect(true)
+            }).then(setRedirect(true))
         } catch (err) {
             console.error(err.message);
         }
