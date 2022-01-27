@@ -3,37 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 
 function UserHome() {
-    /*
-        const [sandwiches, setSandwich] = useState([]);
-    
-        //delete function
-        const deleteSandwich = async (id) => {
-            try {
-                const deleteSandwich = await fetch(``, {
-                    method: "DELETE"
-                });
-                setSandwich(sandwiches.filter(sandwich => sandwiches.sandwich_id !== id));
-                window.location = "/UserHome";
-            } catch (err) {
-                console.error(err.message)
-            }
-        }
-    
-        const getSandwiches = async () => {
-            try {
-                const response = await fetch("")
-                const jsonData = await response.json();
-                setGames(jsonData);
-                console.log(jsonData)
-            } catch (err) {
-                console.error(err.message);
-            }
-        }
-    
-        useEffect(() => {
-            getSandwich();
-        }, []);
-    */
+
     return (
         <div className="container">
             <div className="jumbotron">
