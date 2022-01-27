@@ -9,7 +9,7 @@ function UserHome() {
             <div className="jumbotron">
                 <h1 className="display-4">Burger HQ!</h1>
                 <p className="lead">Welcome!</p>
-                <Link className="btn btn-primary btn-lg" to="/Create" role="button">Get To Makin'!</Link>
+                <Link className="btn btn-primary btn-lg" to="/NameSandwich" role="button">Get To Makin'!</Link>
                 <Link className="btn btn-primary btn-lg" to="/" role="button">Sign Out</Link>
             </div>
             <h3 className="body-text">Here's your previous creations!</h3>
