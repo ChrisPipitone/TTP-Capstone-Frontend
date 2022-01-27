@@ -4,9 +4,9 @@ import axios from 'axios'
 import { Navigate, Link } from 'react-router-dom';
 
 function Register() {
-    const [email, setEmail] = useState("")
+    const [user_email, setEmail] = useState("")
     const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [user_password, setPassword] = useState("")
     const [redirect, setRedirect] = useState(false)
 
     const handleEmail = (event) => {
@@ -24,7 +24,7 @@ function Register() {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const body = { email, username, password }
+            const body = { user_email, username, user_password }
             const response = axios({
                 method: 'post',
                 url: `http://localhost:5000/auth/register`,
@@ -70,7 +70,7 @@ function Register() {
                 </div>
                 <div>
                     <label htmlFor="password"></label>
-                    <input type="text" placeholder="Password" name="password" onChange={handlePassword} />
+                    <input type="password" placeholder="Password" name="password" onChange={handlePassword} />
                 </div>
                 <button className="btn-primary">Sign Up</button>
             </form>

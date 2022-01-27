@@ -1,16 +1,19 @@
 import "./Style.css"
 import axios from 'axios'
 import React, { useState } from 'react'
+import { Navigate, Link } from 'react-router-dom';
 
-function AddIngredients(props) {
+function AddIngredients({ sId }) {
 
     const [breads, setBreads] = useState([]);
     const [meats, setMeats] = useState([]);
     const [cheeses, setCheeses] = useState([]);
     const [veggies, setVeggies] = useState([]);
     const [sauces, setSauces] = useState([]);
+    const [redirect, setRedirect] = useState(false);
     let ingredientList = [];
 
+    console.log("ID1111::::" + sId);
     React.useEffect(() => {
         try {
             axios
@@ -85,12 +88,20 @@ function AddIngredients(props) {
         })
         console.log(response.data)
     }
-
+    console.log("ID::::" + sId);
     console.log(ingredientList);
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        setRedirect(true);
+    }
+
+    if (redirect)
+        return (<Navigate to="/UserHome" />)
 
     return (
 
-        <form className="body-text" onSubmit>
+        <form className="body-text" onSubmit={handleSubmit}>
 
             <h3 >Choose Your Bread:</h3>
             {breads.map(bread => (
@@ -133,7 +144,7 @@ function AddIngredients(props) {
             ))}
 
             <br /><br />
-            <button type="submit" className="btn btn-primary btn-lg btn-delete">Wrap It Up!</button>
+            <button type="submit" className="btn btn-primary btn-lg btn-delete" >Wrap It Up!</button>
         </form>
     )
 }

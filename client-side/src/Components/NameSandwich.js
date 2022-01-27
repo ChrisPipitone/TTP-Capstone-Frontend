@@ -17,7 +17,9 @@ function NameSandwich() {
                 method: 'post',
                 url: `http://localhost:5000/sandwiches/2/${name}`,
                 data: body
-            }).then(setRedirect(true))
+
+            })
+            setRedirect(true)
         } catch (err) {
             console.error(err.message);
         }

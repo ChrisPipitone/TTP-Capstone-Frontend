@@ -10,7 +10,7 @@ function Home() {
     React.useEffect(() => {
         try {
             axios
-                .get(`http://localhost:5000/sandwiches/1`)
+                .get(`http://localhost:5000/sandwiches/2`)
                 .then(response => {
                     setSandwich(response.data)
                 })
@@ -25,7 +25,6 @@ function Home() {
     const fetchIngredients = async () => {
         sandwiches.forEach(async (element) => {
             try {
-                console.log("sandwich id ::: " + element.sandwich_id)
                 axios
                     .get(`http://localhost:5000/sandwiches/sandwich/${element.sandwich_id}`)
                     .then(response => {
@@ -58,23 +57,61 @@ function Home() {
             <h3 className="body-text">Check out our popular creations below!</h3>
 
             <div className="d-flex flex-row bd-highlight mb-3" >
-                {sandwiches.map(sandwich => (
-                    <div className="body-text" key={sandwich.sandwich_id}>
-                        <div className="card">
-                            <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
-                                className="card-img-top card-img" alt="Sandwich" />
+                <div className="body-text">
+                    <div className="card">
+                        <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
+                            className="card-img-top card-img" alt="Sandwich" />
 
-                            <div className="card-body" key={sandwich.sandwich_id}>
-                                <h5 className="card-title">{sandwich.sandwich_name}</h5>
-                            </div>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">{sandwich.ingredient_id}</li>
-                            </ul>
+                        <div className="card-body">
+                            <h5 className="card-title">Meatball Marinara</h5>
                         </div>
-                    </div>
-                ))}
-            </div>
 
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">Italian Bread</li>
+                            <li className="list-group-item">Meatballs</li>
+                            <li className="list-group-item">Mozzarrella</li>
+                            <li className="list-group-item">Marinara Sauce</li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div className="body-text">
+                    <div className="card">
+                        <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
+                            className="card-img-top card-img" alt="Sandwich" />
+
+                        <div className="card-body">
+                            <h5 className="card-title">Steak and Cheese</h5>
+                        </div>
+
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">Wheat Bread</li>
+                            <li className="list-group-item">Shredded Steak</li>
+                            <li className="list-group-item">Cheddar Cheese</li>
+                            <li className="list-group-item">Lettuce</li>
+                            <li className="list-group-item">Tomato</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="body-text">
+                    <div className="card">
+                        <img src="https://static.onecms.io/wp-content/uploads/sites/9/2013/12/06/2012-r-xl-vegetable-sandwich-with-dill-sauce-2000.jpg"
+                            className="card-img-top card-img" alt="Sandwich" />
+
+                        <div className="card-body">
+                            <h5 className="card-title">Ham and Swiss</h5>
+                        </div>
+
+                        <ul className="list-group list-group-flush">
+                            <li className="list-group-item">White Bread</li>
+                            <li className="list-group-item">Ham</li>
+                            <li className="list-group-item">Swiss Cheese</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
     )
 }
