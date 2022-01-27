@@ -7,6 +7,7 @@ function NameSandwich() {
 
     const [name, setName] = useState([]);
     const [redirect, setRedirect] = useState(false)
+    const [id, setId] = useState();
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -17,14 +18,18 @@ function NameSandwich() {
                 method: 'post',
                 url: `http://localhost:5000/sandwiches/2/${name}`,
                 data: body
-            }).then(setRedirect(true))
+               
+            })// }).then(setRedirect(true))
+            console.log(response.data[0].sandwich_id)
+            setId(response.data[0].sandwich_id)
+            setRedirect(true)
         } catch (err) {
             console.error(err.message);
         }
     }
-
+    console.log("saf sadf::: " + id);
     if (redirect)
-        return (<Navigate to="/AddIngredients" />)
+        return (<Navigate to="/AddIngredients" sId = {id}/>)
 
     return (
         <form className="body-text" onSubmit={handleSubmit}>

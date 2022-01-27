@@ -2,7 +2,7 @@ import "./Style.css"
 import axios from 'axios'
 import React, { useState } from 'react'
 
-function AddIngredients(props) {
+function AddIngredients( {sId} ) {
 
     const [breads, setBreads] = useState([]);
     const [meats, setMeats] = useState([]);
@@ -85,7 +85,7 @@ function AddIngredients(props) {
         })
         console.log(response.data)
     }
-
+    console.log("ID::::" + sId);
     console.log(ingredientList);
 
     return (
