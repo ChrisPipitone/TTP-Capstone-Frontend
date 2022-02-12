@@ -1,42 +1,49 @@
 import './Style.css'
 import React, { useState } from 'react';
-import axios from 'axios'
 import { Navigate, Link } from 'react-router-dom';
 
 
-function Login() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [redirect, setRedirect] = useState(false)
-
-    const handleEmail = (event) => {
-        setEmail(event.target.value)
+function Login( {setAuth} ) {
+    const[inputs, setInputs] = useState( {
+        email: "",
+        password: ""
     }
+    )
 
-    const handlePassword = (event) => {
-        setPassword(event.target.value)
-    }
+    const { email, password } = inputs;
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        setRedirect(true)
-        // try {
-        //     const body = { email, password }
-        //     const response = axios({
-        //         method: 'POST',
-        //         url: ``,
-        //         data: body
-        //     })
+    const onChange = (e) => {
+        setInputs( { ...inputs, [e.target.name] : e.target.value });
+    };
 
-        //     
-        // } catch (err) {
-        //     console.error(err.message)
-        // }
 
-    }
+    const onSubmitForm = async (e) => {
+        e.preventDefault();
 
-    if (redirect)
-        return (<Navigate to="/UserHome" />)
+        try {
+            const body = { email, password};
+
+            const response = await fetch("http://localhost:5000/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                    "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
+
+            //the jwt token -vvvvvv-
+            const parseRes = await response.json();
+            
+            localStorage.setItem("token", parseRes.token);
+
+            setAuth(true);
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
 
     return (
 
@@ -60,11 +67,11 @@ function Login() {
                     <img className="form-img" src="https://dcassetcdn.com/design_img/2808265/132070/132070_15359255_2808265_834eb78a_image.jpg" alt="Burger HQ Logo" />
 
                     <label htmlFor="email">  </label>
-                    <input type="text" placeholder="Email" name="email" onChange={handleEmail} />
+                    <input type="text" placeholder="Email" name="email" value={email} onChange={e => onChange(e) }/>
                 </div>
                 <div>
                     <label htmlFor="password"></label>
-                    <input type="text" placeholder="Password" name="password" onChange={handlePassword} />
+                    <input type="text" placeholder="Password" name="password" value={password} onChange={e => onChange(e)} />
                 </div>
                 <button className="btn-primary">Log In</button>
 
