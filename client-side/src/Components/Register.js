@@ -3,45 +3,52 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { Navigate, Link } from 'react-router-dom';
 
-function Register() {
-    const [email, setEmail] = useState("")
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [redirect, setRedirect] = useState(false)
+function Register( {setAuth} ) {
+    const [inputs, setInputs] = useState( {
+        email: "",
+        password: "",
+        name: ""
+    })
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value)
-    }
+    const { email, password, name} = inputs;
 
-    const handleUsername = (event) => {
-        setUsername(event.target.value)
-    }
+    const onChange = (e) => {
+        setInputs( { ...inputs, [e.target.name] : e.target.value });
+    };
 
-    const handlePassword = (event) => {
-        setPassword(event.target.value)
-    }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
+    const onSubmitForm = async (e) => {
+        e.preventDefault();
+
         try {
-            const body = { email, username, password }
-            const response = axios({
-                method: 'post',
-                url: `http://localhost:5000/auth/register`,
-                data: body
-            }).then(setRedirect(true))
-        } catch (err) {
-            console.error(err.message);
-        }
-    }
+            const body = { email, password, name };
 
-    if (redirect)
-        return (<Navigate to="/Login" />)
+            const response = await fetch("http://localhost:5000/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                    "Content-type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                }
+            );
+
+            //the jwt token -vvvvvv-
+            const parseRes = await response.json();
+            
+            localStorage.setItem("token", parseRes.token);
+
+            setAuth(true);
+
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
 
     return (
 
         <div className="form body-text">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmitForm}>
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark ">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,15 +69,15 @@ function Register() {
                     <img className="form-img" src="https://dcassetcdn.com/design_img/2808265/132070/132070_15359255_2808265_834eb78a_image.jpg" alt="Burger HQ Logo" />
 
                     <label htmlFor="email">  </label>
-                    <input type="text" placeholder="Email" name="email" onChange={handleEmail} />
+                    <input type="text" placeholder="Email" name="email" value={email} onChange={e => onChange(e)} />
                 </div>
                 <div>
                     <label htmlFor="text">  </label>
-                    <input type="text" placeholder="Username" name="username" onChange={handleUsername} />
+                    <input type="text" placeholder="Username" name="name" value={name} onChange={e => onChange(e)}/>
                 </div>
                 <div>
                     <label htmlFor="password"></label>
-                    <input type="text" placeholder="Password" name="password" onChange={handlePassword} />
+                    <input type="password" placeholder="Password" name="password" value={password}onChange={e => onChange(e)}/>
                 </div>
                 <button className="btn-primary">Sign Up</button>
             </form>
