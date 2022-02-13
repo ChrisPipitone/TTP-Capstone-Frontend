@@ -1,7 +1,7 @@
 import "./Style.css"
 import axios from 'axios'
 import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 function NameSandwich() {
 
@@ -29,7 +29,7 @@ function NameSandwich() {
     }
     console.log("saf sadf::: " + id);
     if (redirect)
-        return (<Navigate to="/AddIngredients"  sId = {id}/>)
+        return (<Redirect to="/AddIngredients"  sId = {id}/>)
 
     return (
         <form className="body-text" onSubmit={handleSubmit}>

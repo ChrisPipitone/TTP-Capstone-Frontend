@@ -1,15 +1,15 @@
 import "./Style.css"
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-function UserHome({setAuth}) {
+function UserHome( {setAuth} ) {
 
     const [name, setName] = useState ();
     const [userId, setuserId] = useState();
 
     async function getName () {
         try {
-            const response = await fetch("http://localhost:5000/dashboard/",{
+            const response = await fetch("http://localhost:5000/userHome/",{
                 method: "GET",
                 headers: { token: localStorage.token }
             })
@@ -32,13 +32,14 @@ function UserHome({setAuth}) {
         localStorage.removeItem("token");
         setAuth(false);
     }
+
     return (
         <div className="container">
             <div className="jumbotron">
                 <h1 className="display-4">Burger HQ!</h1>
                 <p className="lead">Welcome!</p>
                 <Link className="btn btn-primary btn-lg" to="/NameSandwich" role="button">Get To Makin'!</Link>
-                <Link className="btn btn-primary btn-lg" to="/" role="button">Sign Out</Link>
+                <Link className="btn btn-primary btn-lg" to="/" role="button" onClick={ e => logout(e) }>Sign Out</Link>
             </div>
             <h3 className="body-text">Here's your previous creations!</h3>
             <div className="d-flex flex-row bd-highlight mb-3">

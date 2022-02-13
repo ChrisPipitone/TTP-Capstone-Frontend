@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import Home from './Components/Home'
 import AddIngredients from './Components/AddIngredients'
 import NameSandwich from './Components/NameSandwich'
@@ -41,43 +41,59 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/UserHome" element={<UserHome />} />
-          <Route path="/AddIngredients" element={<AddIngredients />} />
-          <Route path="/NameSandwich" element={<NameSandwich />} />
-          <Route path="/Register" element={<Register />} />
+      <Router>
+        <div className='container'>
+          <Switch>
 
-          {/* if not authenticated login if they are authenticated redirect to dashboard */}
-          <Route exact path="/Login" render= {props => 
+             {/* if not authenticated login if they are authenticated redirect to dashboard */}
+             <Route exact path="/Login" render= {props => 
               !isAuthenticated ? (
               <Login {...props} setAuth={setAuth}/>
             ) : 
-              <Navigate to="/UserHome"/>
+              <Redirect to="/UserHome" />
             } 
             />
-          {/* <Route path="/Login" element={<Login />} /> */}
 
+            <Route exact path="/Register" render={props => 
+             !isAuthenticated ? (
+              <Register {...props} setAuth={setAuth}/> 
+              ) : 
+              <Redirect to="/Login" />
+            } 
+            />
 
-          <Route exact path="/register" render={props => 
-            !isAuthenticated ? (
-            <Register {...props} setAuth={setAuth}/> 
-            ) : 
-            <Navigate to="/Login" />
-          } 
-          />
+          {/* if not authenticated go to login if authenticated go to dashboard*/}
 
-          {/* if not authenticated go to login if authenticated go to userHome*/}
-          <Route exact path="/" render={props => 
-            isAuthenticated ? (
-            <UserHome {...props} setAuth={setAuth}/> 
-            ) : 
-            <Navigate to="/Login" /> 
-          } 
-          />
-        </Routes>
-      </BrowserRouter>
+          <Route exact path="/UserHome" render={props => 
+              isAuthenticated ? (
+              <UserHome {...props} setAuth={setAuth}/> 
+              ) : 
+              <Redirect to="/login" /> 
+            } 
+            />
+
+     <Route path="/NameSandwich">
+            <NameSandwich />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route> 
+
+     
+
+          <Route path="/UserHome">
+              <UserHome />
+            </Route>
+
+            <Route path="/AddIngredients">
+              <AddIngredients />
+            </Route>
+
+          
+
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }

@@ -39,9 +39,9 @@ function Home() {
         })
     }
 
-    console.log(sandwiches);
-    console.log(usedIngredients);
-    console.log(ingredients);
+    // console.log(sandwiches);
+    // console.log(usedIngredients);
+    // console.log(ingredients);
 
     return (
         <div className="container">

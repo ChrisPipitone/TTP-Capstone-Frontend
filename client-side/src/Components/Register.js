@@ -1,16 +1,17 @@
 import './Style.css'
 import React, { useState } from 'react';
-import axios from 'axios'
-import { Navigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-function Register( {setAuth} ) {
+const Register = ( {setAuth} ) => {
+
+
     const [inputs, setInputs] = useState( {
-        email: "",
-        password: "",
-        name: ""
+        user_email: "",
+        user_password: "",
+        username: ""
     })
 
-    const { email, password, name} = inputs;
+    const { user_email, user_password, username} = inputs;
 
     const onChange = (e) => {
         setInputs( { ...inputs, [e.target.name] : e.target.value });
@@ -21,7 +22,7 @@ function Register( {setAuth} ) {
         e.preventDefault();
 
         try {
-            const body = { email, password, name };
+            const body = { username, user_password, user_email };
 
             const response = await fetch("http://localhost:5000/auth/register",
                 {
@@ -32,11 +33,12 @@ function Register( {setAuth} ) {
                     body: JSON.stringify(body)
                 }
             );
-
+            console.log(body)
+            
             //the jwt token -vvvvvv-
             const parseRes = await response.json();
             
-            localStorage.setItem("token", parseRes.token);
+            localStorage.setItem("token", parseRes.jwtToken);
 
             setAuth(true);
 
@@ -51,9 +53,13 @@ function Register( {setAuth} ) {
             <form onSubmit={onSubmitForm}>
                 <div>
                     <nav className="navbar navbar-expand-lg navbar-dark ">
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button className="navbar-toggler" type="button" 
+                            data-toggle="collapse" data-target="#navbarNav" 
+                            aria-controls="navbarNav" aria-expanded="false" 
+                            aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
+
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
@@ -65,19 +71,43 @@ function Register( {setAuth} ) {
                             </ul>
                         </div>
                     </nav>
+
                     <h1>Burger HQ</h1>
-                    <img className="form-img" src="https://dcassetcdn.com/design_img/2808265/132070/132070_15359255_2808265_834eb78a_image.jpg" alt="Burger HQ Logo" />
+
+                    <img className="form-img" 
+                        src="https://dcassetcdn.com/design_img/2808265/132070/132070_15359255_2808265_834eb78a_image.jpg" 
+                        alt="Burger HQ Logo" 
+                    />
 
                     <label htmlFor="email">  </label>
-                    <input type="text" placeholder="Email" name="email" value={email} onChange={e => onChange(e)} />
+                    <input type="email" 
+                        placeholder="Email" 
+                        name="user_email" 
+                        value={user_email} 
+                        onChange={e => onChange(e)} 
+                    />
                 </div>
+
                 <div>
                     <label htmlFor="text">  </label>
-                    <input type="text" placeholder="Username" name="name" value={name} onChange={e => onChange(e)}/>
+                    <input type="text" 
+                        placeholder="Username" 
+                        name="username" 
+                        value={username} 
+                        onChange={e => onChange(e)}
+                    />
                 </div>
+
                 <div>
                     <label htmlFor="password"></label>
-                    <input type="password" placeholder="Password" name="password" value={password}onChange={e => onChange(e)}/>
+
+                    <input type="password" 
+                        placeholder="Password" 
+                        name="user_password"
+                        value={user_password}
+                        onChange={e => onChange(e)}
+                    />
+
                 </div>
                 <button className="btn-primary">Sign Up</button>
             </form>
