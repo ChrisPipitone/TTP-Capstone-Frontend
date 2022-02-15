@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 function UserHome( {setAuth} ) {
 
-    const [name, setName] = useState ();
-    const [userId, setuserId] = useState();
+    const [sandwichName, setSandwichName] = useState ();
+    const [sandwich_id, setsandwichId] = useState();
 
     async function getName () {
         try {
@@ -15,17 +15,23 @@ function UserHome( {setAuth} ) {
             })
 
             const parseRes = await response.json();
-            setName( parseRes.user_name );
 
-            setuserId( parseRes.user_id);
+            //this response contains an array of objects that are key values pairs with 
+            //the sandwich name's and id's of the user logged in
+            //use the name as the title for the sandwich card
+            //use the id in a second fetch to get all the ingredients of each id
+            //make a 2d array that first holds the ids then second holds the ingredients for each
 
+            //use that 2d array? should use a better data structure? to be parsed by the html for each card
+            //use card code from gif assignment to do this part
+            
         } catch (error) {
             console.error(error.message);
         }
     }
     useEffect( () => {
         getName();
-    },[]);
+    },);
 
     const logout = (e) => {
         e.preventDefault();
