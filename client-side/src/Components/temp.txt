@@ -1,0 +1,64 @@
+ React.useEffect(() => {
+        try {
+            axios
+                .get(`http://localhost:5000/ingredients/Bread`)
+                .then(response => {
+                    setBreads(response.data);
+                })
+
+        } catch (err) {
+            console.error(err.message)
+        }
+    }, [])
+
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`http://localhost:5000/ingredients/Meat`)
+                .then(response => {
+                    setMeats(response.data);
+                })
+
+        } catch (err) {
+            console.error(err.message)
+        }
+    }, [])
+
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`http://localhost:5000/ingredients/Cheese`)
+                .then(response => {
+                    setCheeses(response.data);
+                })
+
+        } catch (err) {
+            console.error(err.message)
+        }
+    }, [])
+
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`http://localhost:5000/ingredients/Veggies`)
+                .then(response => {
+                    setVeggies(response.data);
+                })
+
+        } catch (err) {
+            console.error(err.message)
+        }
+    }, [])
+
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`http://localhost:5000/ingredients/Sauce`)
+                .then(response => {
+                    setSauces(response.data);
+                })
+
+        } catch (err) {
+            console.error(err.message)
+        }
+    }, [])

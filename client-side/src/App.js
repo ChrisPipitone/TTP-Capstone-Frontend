@@ -1,14 +1,15 @@
 import './App.css';
 import React, {useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import Home from './Components/Home'
-import AddIngredients from './Components/AddIngredients'
-import NameSandwich from './Components/NameSandwich'
 
 //components
+import Home from './Components/Home'
 import Login from './Components/Login'
 import Register from './Components/Register'
 import UserHome from './Components/UserHome'
+
+//sandwich components
+import CreateSandwich from './Components/CreateSandwich';
 
 function App() {
 
@@ -72,24 +73,18 @@ function App() {
             } 
             />
 
-     <Route path="/NameSandwich">
-            <NameSandwich />
+          <Route path="/CreateSandwich">
+            <CreateSandwich />
           </Route>
+
           <Route path="/">
             <Home />
           </Route> 
 
-     
 
           <Route path="/UserHome">
               <UserHome />
-            </Route>
-
-            <Route path="/AddIngredients">
-              <AddIngredients />
-            </Route>
-
-          
+            </Route> 
 
           </Switch>
         </div>
